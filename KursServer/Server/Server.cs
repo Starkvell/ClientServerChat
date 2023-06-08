@@ -18,6 +18,7 @@ namespace Server
         private long id = 0;
         private struct Mail
         {
+            public string from;
             public string msg;
             public string who;
             public string theme;
@@ -166,9 +167,11 @@ namespace Server
                         {
                             if (obj2.Value.username.ToString() == data.who)
                             {
-                                
-                                string sendmsg = string.Format("{0} sended mail to you with theme {1}: {2}", fromwho.username, data.theme, data.msg);
-                                Send(sendmsg, obj2.Value);
+                                data.from = fromwho.username.ToString();
+                                //string sendmsg = string.Format("{0} sended mail to you with theme {1}: {2}", fromwho.username, data.theme, data.msg);
+                                JavaScriptSerializer newjson = new JavaScriptSerializer(); // feel free to use JSON serializer
+                                Send(newjson.Serialize(data), obj2.Value);
+                                //Send(sendmsg, obj2.Value);
                                 string logstr = string.Format("{0} sended mail to {1} with theme {2}: {3}", fromwho.username, data.who, data.theme, data.msg);
                                 Log(logstr);
                                 fromwho.data.Clear();

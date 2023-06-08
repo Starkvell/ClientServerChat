@@ -20,9 +20,11 @@ namespace kurs4sem
     {
         private bool connected = false;
         private Thread client = null;
+        private int mailindex = 0;
 
         private struct Mail
         {
+            public string from;
             public string msg;
             public string who;
             public string theme;
@@ -39,7 +41,7 @@ namespace kurs4sem
             public StringBuilder data;
             public EventWaitHandle handle;
         };
-        private ConcurrentDictionary<long, MyClient> clients = new ConcurrentDictionary<long, MyClient>();
+        private ConcurrentDictionary<long, MyClient> mails = new ConcurrentDictionary<long, MyClient>();
 
         private MyClient obj;
         private Task send = null;
@@ -104,7 +106,12 @@ namespace kurs4sem
                     }
                     else
                     {
-                        Log(obj.data.ToString());
+                        // Log(obj.data.ToString());
+
+                        JavaScriptSerializer json = new JavaScriptSerializer(); // feel free to use JSON serializer
+                        Mail data = json.Deserialize<Mail>(obj.data.ToString());
+                        AddToGrid(mailindex++, data.theme, data.from);
+
                         obj.data.Clear();
                         obj.handle.Set();
                     }
@@ -226,7 +233,7 @@ namespace kurs4sem
             Send(json.Serialize(data));
             while (obj.client.Connected)
             {
-                AddToGrid(obj.id, obj.username.ToString());
+                //AddToGrid(obj.id, obj.username.ToString());
                 try
                 {
                     obj.stream.BeginRead(obj.buffer, 0, obj.buffer.Length, new AsyncCallback(ReadAuth), null);
@@ -367,13 +374,13 @@ namespace kurs4sem
         ///////// grid 
         ///
 
-        private void AddToGrid(long id, string name)
+        private void AddToGrid(long id, string theme, string from)
         {
             if (!exit)
             {
                 mailDataGridView.Invoke((MethodInvoker)delegate
                 {
-                    string[] row = new string[] { id.ToString(), name };
+                    string[] row = new string[] { id.ToString(), theme, from };
                     mailDataGridView.Rows.Add(row);
                     totalLabel.Text = string.Format("Всего писем: {0}", mailDataGridView.Rows.Count);
                 });
@@ -402,7 +409,7 @@ namespace kurs4sem
             if (e.RowIndex >= 0 && e.ColumnIndex == mailDataGridView.Columns["dc"].Index)
             {
                 long.TryParse(mailDataGridView.Rows[e.RowIndex].Cells["identifier"].Value.ToString(), out long id);
-                clients.TryGetValue(id, out MyClient obj);
+                mails.TryGetValue(id, out MyClient obj);
                 RemoveFromGrid(obj.id);
             }
         }
