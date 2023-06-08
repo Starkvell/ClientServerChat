@@ -340,13 +340,13 @@ namespace kurs4sem
 
         private void SendMailBtn_Click(object sender, EventArgs e)
         {
-                    if (MessegeTextBox.Text.Length > 0 && WhotextBox.Text.Length > 0 && ThemetextBox.Text.Length > 0)
+                    if (MessageTextBox.Text.Length > 0 && WhotextBox.Text.Length > 0 && ThemetextBox.Text.Length > 0)
                     {
-                        string msg = MessegeTextBox.Text;
+                        string msg = MessageTextBox.Text;
                         string who = WhotextBox.Text;
                         string theme = ThemetextBox.Text;
                         
-                        MessegeTextBox.Clear();
+                        MessageTextBox.Clear();
                         WhotextBox.Clear();
                         ThemetextBox.Clear();
                         
