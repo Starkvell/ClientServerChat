@@ -45,7 +45,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.WhotextBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.MessegeTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.mailDataGridView = new System.Windows.Forms.DataGridView();
             this.totalLabel = new System.Windows.Forms.Label();
@@ -132,7 +132,7 @@
             this.sendmailbtn.TabIndex = 39;
             this.sendmailbtn.Text = "Отправить";
             this.sendmailbtn.UseVisualStyleBackColor = true;
-            this.sendmailbtn.Click += new System.EventHandler(this.sendmailbtn_Click);
+            this.sendmailbtn.Click += new System.EventHandler(this.SendMailBtn_Click);
             // 
             // ThemetextBox
             // 
@@ -178,13 +178,13 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(621, 187);
-            this.textBox1.MaxLength = 100;
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(556, 223);
-            this.textBox1.TabIndex = 34;
+            this.MessegeTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.MessegeTextBox.Location = new System.Drawing.Point(621, 187);
+            this.MessegeTextBox.MaxLength = 100;
+            this.MessegeTextBox.Multiline = true;
+            this.MessegeTextBox.Name = "MessegeTextBox";
+            this.MessegeTextBox.Size = new System.Drawing.Size(556, 223);
+            this.MessegeTextBox.TabIndex = 34;
             // 
             // label6
             // 
@@ -333,7 +333,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.WhotextBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.MessegeTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.logTextBox);
@@ -364,7 +364,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox WhotextBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox MessegeTextBox;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DataGridView mailDataGridView;
         private System.Windows.Forms.Label totalLabel;

@@ -338,14 +338,18 @@ namespace kurs4sem
             }
         }
 
-        private void sendmailbtn_Click(object sender, EventArgs e)
+        private void SendMailBtn_Click(object sender, EventArgs e)
         {
-                    if (textBox1.Text.Length > 0 && WhotextBox.Text.Length > 0 && ThemetextBox.Text.Length > 0)
+                    if (MessegeTextBox.Text.Length > 0 && WhotextBox.Text.Length > 0 && ThemetextBox.Text.Length > 0)
                     {
-                        string msg = textBox1.Text;
+                        string msg = MessegeTextBox.Text;
                         string who = WhotextBox.Text;
                         string theme = ThemetextBox.Text;
-                        textBox1.Clear();
+                        
+                        MessegeTextBox.Clear();
+                        WhotextBox.Clear();
+                        ThemetextBox.Clear();
+                        
                         Log(string.Format("{0} (You): {1}", obj.username, msg));
                         if (connected)
                         {
