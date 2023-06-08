@@ -16,6 +16,12 @@ namespace Server
         private bool active = false;
         private Thread listener = null;
         private long id = 0;
+        private struct Mail
+        {
+            public string msg;
+            public string who;
+            public string theme;
+        }
         private struct MyClient
         {
             public long id;
@@ -24,6 +30,8 @@ namespace Server
             public NetworkStream stream;
             public byte[] buffer;
             public StringBuilder data;
+            public StringBuilder who;
+            public StringBuilder theme;
             public EventWaitHandle handle;
         };
         private ConcurrentDictionary<long, MyClient> clients = new ConcurrentDictionary<long, MyClient>();
@@ -127,13 +135,13 @@ namespace Server
 
         private void Read(IAsyncResult result)
         {
-            MyClient obj = (MyClient)result.AsyncState;
+            MyClient fromwho = (MyClient)result.AsyncState;
             int bytes = 0;
-            if (obj.client.Connected)
+            if (fromwho.client.Connected)
             {
                 try
                 {
-                    bytes = obj.stream.EndRead(result);
+                    bytes = fromwho.stream.EndRead(result);
                 }
                 catch (Exception ex)
                 {
@@ -142,33 +150,51 @@ namespace Server
             }
             if (bytes > 0)
             {
-                obj.data.AppendFormat("{0}", Encoding.UTF8.GetString(obj.buffer, 0, bytes));
+                fromwho.data.AppendFormat("{0}", Encoding.UTF8.GetString(fromwho.buffer, 0, bytes));
                 try
                 {
-                    if (obj.stream.DataAvailable)
+                    if (fromwho.stream.DataAvailable)
                     {
-                        obj.stream.BeginRead(obj.buffer, 0, obj.buffer.Length, new AsyncCallback(Read), obj);
+                        fromwho.stream.BeginRead(fromwho.buffer, 0, fromwho.buffer.Length, new AsyncCallback(Read), fromwho);
                     }
                     else
                     {
-                        string msg = string.Format("{0}: {1}", obj.username, obj.data);
+                        JavaScriptSerializer json = new JavaScriptSerializer(); // feel free to use JSON serializer
+                        Mail data = json.Deserialize<Mail>(fromwho.data.ToString());
+
+                        foreach (KeyValuePair<long, MyClient> obj2 in clients)
+                        {
+                            if (obj2.Value.username.ToString() == data.who)
+                            {
+                                
+                                string sendmsg = string.Format("{0} sended mail to you with theme {1}: {2}", fromwho.username, data.theme, data.msg);
+                                Send(sendmsg, obj2.Value);
+                                string logstr = string.Format("{0} sended mail to {1} with theme {2}: {3}", fromwho.username, data.who, data.theme, data.msg);
+                                Log(logstr);
+                                fromwho.data.Clear();
+                                fromwho.handle.Set();
+                                break;
+                            }
+                        }
+
+                        /*string msg = string.Format("{0}: {1}", obj.username, obj.data);
                         Log(msg);
                         Send(msg, obj.id);
                         obj.data.Clear();
-                        obj.handle.Set();
+                        obj.handle.Set();*/
                     }
                 }
                 catch (Exception ex)
                 {
-                    obj.data.Clear();
+                    fromwho.data.Clear();
                     Log(ErrorMsg(ex.Message));
-                    obj.handle.Set();
+                    fromwho.handle.Set();
                 }
             }
             else
             {
-                obj.client.Close();
-                obj.handle.Set();
+                fromwho.client.Close();
+                fromwho.handle.Set();
             }
         }
 
@@ -335,49 +361,12 @@ namespace Server
             }
             else if (listener == null || !listener.IsAlive)
             {
-                string address = addrTextBox.Text.Trim();
-                string number = portTextBox.Text.Trim();
-                string username = usernameTextBox.Text.Trim();
+                string address = "127.0.0.1";
+                int port= 9000;
                 bool error = false;
                 IPAddress ip = null;
-                if (address.Length < 1)
-                {
-                    error = true;
-                    Log(SystemMsg("Address is required"));
-                }
-                else
-                {
-                    try
-                    {
-                        ip = Dns.Resolve(address).AddressList[0];
-                    }
-                    catch
-                    {
-                        error = true;
-                        Log(SystemMsg("Address is not valid"));
-                    }
-                }
-                int port = -1;
-                if (number.Length < 1)
-                {
-                    error = true;
-                    Log(SystemMsg("Port number is required"));
-                }
-                else if (!int.TryParse(number, out port))
-                {
-                    error = true;
-                    Log(SystemMsg("Port number is not valid"));
-                }
-                else if (port < 0 || port > 65535)
-                {
-                    error = true;
-                    Log(SystemMsg("Port number is out of range"));
-                }
-                if (username.Length < 1)
-                {
-                    error = true;
-                    Log(SystemMsg("Username is required"));
-                }
+                ip = Dns.Resolve(address).AddressList[0];
+
                 if (!error)
                 {
                     listener = new Thread(() => Listener(ip, port))
