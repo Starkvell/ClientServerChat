@@ -50,27 +50,10 @@ namespace kurs4sem
         public MainForm()
         {
             InitializeComponent();
-            label2.Text = LoginForm.username;
+            label2.Text = LoginForm.username + "@bobkin.ru";
             ConnectToServer();
         }
 
-/*        private void Log(string msg = "") // вывод писем
-        {
-            if (!exit)
-            {
-                logTextBox.Invoke((MethodInvoker)delegate
-                {
-                    if (msg.Length > 0)
-                    {
-                        logTextBox.AppendText(string.Format("[ {0} ] {1}{2}", DateTime.Now.ToString("HH:mm"), msg, Environment.NewLine));
-                    }
-                    else
-                    {
-                        logTextBox.Clear();
-                    }
-                });
-            }
-        }*/
 
         private string ErrorMsg(string msg)
         {
@@ -111,7 +94,7 @@ namespace kurs4sem
 
                         JavaScriptSerializer json = new JavaScriptSerializer(); // feel free to use JSON serializer
                         Mail data = json.Deserialize<Mail>(obj.data.ToString());
-                        AddToGrid(mailindex++, data.theme, data.from);
+                        AddToGrid(mailindex++, data.theme, data.from,data.msg);
 
                         obj.data.Clear();
                         obj.handle.Set();
@@ -333,16 +316,7 @@ namespace kurs4sem
         {
             if (!exit)
             {
-                    connected = status;
-                    if (status)
-                    {
-                     //   Log(SystemMsg("You are now connected"));
-                    }
-                    else
-                    {
-                       // Log(SystemMsg("You are now disconnected"));
-                    }
-
+                connected = status;
             }
         }
 
@@ -375,12 +349,18 @@ namespace kurs4sem
         ///////// grid 
         ///
 
-        private void AddToGrid(int id, string theme, string from)
+        private void AddToGrid(int id, string theme, string from, string msg)
         {
             if (!exit)
             {
                 mailDataGridView.Invoke((MethodInvoker)delegate
                 {
+                    Mail mail = new Mail();
+                    mail.id = id;
+                    mail.from = from;
+                    mail.theme = theme;
+                    mail.msg = msg;
+                    mails.TryAdd(mail.id, mail);
                     string[] row = new string[] { id.ToString(), theme, from + "@bobkin.ru" };
                     mailDataGridView.Rows.Add(row);
                     totalLabel.Text = string.Format("Всего писем: {0}", mailDataGridView.Rows.Count);
@@ -401,19 +381,27 @@ namespace kurs4sem
                             break;
                         }
                     }
+                    mails.TryRemove(id, out Mail tmp);
                     totalLabel.Text = string.Format("Всего писем: {0}", mailDataGridView.Rows.Count);
                 });
         }
 
-        private void ClientsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
+
+        private void mailDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && e.ColumnIndex == mailDataGridView.Columns["disconnect"].Index)
             {
                 int.TryParse(mailDataGridView.Rows[e.RowIndex].Cells["identifier"].Value.ToString(), out int id);
-                mails.TryGetValue(id, out Mail obj);
-                RemoveFromGrid(obj.id);
+                mails.TryGetValue(id, out Mail obj1);
+                RemoveFromGrid(obj1.id);
+            }
+            else if (e.RowIndex >= 0 && e.ColumnIndex == mailDataGridView.Columns["ReadButton"].Index)
+                {
+                    int.TryParse(mailDataGridView.Rows[e.RowIndex].Cells["identifier"].Value.ToString(), out int id);
+                    mails.TryGetValue(id, out Mail obj1);
+                    MailDetail form = new MailDetail(obj1.from,obj1.theme,obj1.msg);
+                    form.ShowDialog();
             }
         }
-
     }
 }

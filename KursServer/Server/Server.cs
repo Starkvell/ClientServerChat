@@ -100,7 +100,7 @@ namespace Server
             {
                 clientsDataGridView.Invoke((MethodInvoker)delegate
                 {
-                    string[] row = new string[] { id.ToString(), name };
+                    string[] row = new string[] { id.ToString(), name + "@bobkin.ru" };
                     clientsDataGridView.Rows.Add(row);
                     totalLabel.Text = string.Format("Пользователей в сети: {0}", clientsDataGridView.Rows.Count);
                 });
