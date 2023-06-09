@@ -28,16 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.mainlabel = new System.Windows.Forms.Label();
             this.exitbutton = new System.Windows.Forms.Button();
-            this.logTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,12 +48,12 @@
             this.MessageTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.mailDataGridView = new System.Windows.Forms.DataGridView();
-            this.totalLabel = new System.Windows.Forms.Label();
             this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namefrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ReadButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.dc = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.disconnect = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.totalLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mailDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +62,7 @@
             this.mainlabel.AutoSize = true;
             this.mainlabel.Font = new System.Drawing.Font("Tempus Sans ITC", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainlabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mainlabel.Location = new System.Drawing.Point(12, 14);
+            this.mainlabel.Location = new System.Drawing.Point(7, 9);
             this.mainlabel.Name = "mainlabel";
             this.mainlabel.Size = new System.Drawing.Size(234, 35);
             this.mainlabel.TabIndex = 0;
@@ -79,25 +78,12 @@
             this.exitbutton.UseVisualStyleBackColor = true;
             this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
             // 
-            // logTextBox
-            // 
-            this.logTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.logTextBox.Location = new System.Drawing.Point(13, 61);
-            this.logTextBox.Margin = new System.Windows.Forms.Padding(4);
-            this.logTextBox.Multiline = true;
-            this.logTextBox.Name = "logTextBox";
-            this.logTextBox.ReadOnly = true;
-            this.logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logTextBox.Size = new System.Drawing.Size(578, 187);
-            this.logTextBox.TabIndex = 31;
-            this.logTextBox.TabStop = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tempus Sans ITC", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label1.Location = new System.Drawing.Point(302, 25);
+            this.label1.Location = new System.Drawing.Point(298, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(112, 20);
             this.label1.TabIndex = 32;
@@ -108,7 +94,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.label2.Location = new System.Drawing.Point(410, 25);
+            this.label2.Location = new System.Drawing.Point(416, 46);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(130, 20);
             this.label2.TabIndex = 33;
@@ -209,14 +195,14 @@
             this.mailDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.mailDataGridView.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.mailDataGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.mailDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.mailDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.mailDataGridView.ColumnHeadersHeight = 24;
             this.mailDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.mailDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -224,29 +210,29 @@
             this.name,
             this.namefrom,
             this.ReadButton,
-            this.dc});
+            this.disconnect});
             this.mailDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.mailDataGridView.EnableHeadersVisualStyles = false;
             this.mailDataGridView.ImeMode = System.Windows.Forms.ImeMode.Off;
-            this.mailDataGridView.Location = new System.Drawing.Point(13, 272);
+            this.mailDataGridView.Location = new System.Drawing.Point(13, 71);
             this.mailDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.mailDataGridView.MultiSelect = false;
             this.mailDataGridView.Name = "mailDataGridView";
             this.mailDataGridView.ReadOnly = true;
             this.mailDataGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle27.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle27.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.mailDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle27;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.mailDataGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.mailDataGridView.RowHeadersVisible = false;
             this.mailDataGridView.RowHeadersWidth = 40;
             this.mailDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle28.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            dataGridViewCellStyle28.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle28.SelectionBackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle28.SelectionForeColor = System.Drawing.Color.Black;
-            this.mailDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle28;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.Black;
+            this.mailDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle14;
             this.mailDataGridView.RowTemplate.Height = 24;
             this.mailDataGridView.RowTemplate.ReadOnly = true;
             this.mailDataGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -256,30 +242,15 @@
             this.mailDataGridView.ShowCellToolTips = false;
             this.mailDataGridView.ShowEditingIcon = false;
             this.mailDataGridView.ShowRowErrors = false;
-            this.mailDataGridView.Size = new System.Drawing.Size(578, 252);
+            this.mailDataGridView.Size = new System.Drawing.Size(578, 542);
             this.mailDataGridView.TabIndex = 43;
             this.mailDataGridView.TabStop = false;
-            // 
-            // totalLabel
-            // 
-            this.totalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.totalLabel.BackColor = System.Drawing.Color.Transparent;
-            this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.totalLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.totalLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.totalLabel.Location = new System.Drawing.Point(221, 543);
-            this.totalLabel.Margin = new System.Windows.Forms.Padding(8, 4, 4, 4);
-            this.totalLabel.Name = "totalLabel";
-            this.totalLabel.Size = new System.Drawing.Size(144, 22);
-            this.totalLabel.TabIndex = 44;
-            this.totalLabel.Text = "Всего писем: 0";
-            this.totalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // identifier
             // 
             this.identifier.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.identifier.DefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.identifier.DefaultCellStyle = dataGridViewCellStyle9;
             this.identifier.HeaderText = "№";
             this.identifier.MaxInputLength = 20;
             this.identifier.MinimumWidth = 20;
@@ -291,8 +262,8 @@
             // name
             // 
             this.name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.name.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.name.DefaultCellStyle = dataGridViewCellStyle10;
             this.name.HeaderText = "Тема письма";
             this.name.MaxInputLength = 20;
             this.name.MinimumWidth = 20;
@@ -308,9 +279,9 @@
             // 
             // ReadButton
             // 
-            dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle25.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ReadButton.DefaultCellStyle = dataGridViewCellStyle25;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.ReadButton.DefaultCellStyle = dataGridViewCellStyle11;
             this.ReadButton.HeaderText = "";
             this.ReadButton.Name = "ReadButton";
             this.ReadButton.ReadOnly = true;
@@ -318,20 +289,35 @@
             this.ReadButton.UseColumnTextForButtonValue = true;
             this.ReadButton.Width = 80;
             // 
-            // dc
+            // disconnect
             // 
-            this.dc.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dc.DefaultCellStyle = dataGridViewCellStyle26;
-            this.dc.HeaderText = "";
-            this.dc.MinimumWidth = 20;
-            this.dc.Name = "dc";
-            this.dc.ReadOnly = true;
-            this.dc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dc.Text = "Удалить";
-            this.dc.UseColumnTextForButtonValue = true;
-            this.dc.Width = 80;
+            this.disconnect.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.disconnect.DefaultCellStyle = dataGridViewCellStyle12;
+            this.disconnect.HeaderText = "";
+            this.disconnect.MinimumWidth = 20;
+            this.disconnect.Name = "disconnect";
+            this.disconnect.ReadOnly = true;
+            this.disconnect.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.disconnect.Text = "Удалить";
+            this.disconnect.UseColumnTextForButtonValue = true;
+            this.disconnect.Width = 80;
+            // 
+            // totalLabel
+            // 
+            this.totalLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.totalLabel.BackColor = System.Drawing.Color.Transparent;
+            this.totalLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.totalLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.totalLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.totalLabel.Location = new System.Drawing.Point(0, 48);
+            this.totalLabel.Margin = new System.Windows.Forms.Padding(8, 4, 4, 4);
+            this.totalLabel.Name = "totalLabel";
+            this.totalLabel.Size = new System.Drawing.Size(144, 22);
+            this.totalLabel.TabIndex = 44;
+            this.totalLabel.Text = "Всего писем: 0";
+            this.totalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // MainForm
             // 
@@ -351,13 +337,12 @@
             this.Controls.Add(this.MessageTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.logTextBox);
             this.Controls.Add(this.exitbutton);
             this.Controls.Add(this.mainlabel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "MainForm";
-            this.Opacity = 0.93D;
+            this.Opacity = 0.97D;
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Почтовый ящик";
@@ -371,7 +356,6 @@
 
         private System.Windows.Forms.Label mainlabel;
         private System.Windows.Forms.Button exitbutton;
-        private System.Windows.Forms.TextBox logTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -388,7 +372,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn namefrom;
         private System.Windows.Forms.DataGridViewButtonColumn ReadButton;
-        private System.Windows.Forms.DataGridViewButtonColumn dc;
+        private System.Windows.Forms.DataGridViewButtonColumn disconnect;
     }
 }
 

@@ -24,6 +24,7 @@ namespace kurs4sem
 
         private struct Mail
         {
+            public int id;
             public string from;
             public string msg;
             public string who;
@@ -32,7 +33,7 @@ namespace kurs4sem
 
         private struct MyClient
         {
-            public long id;
+            public int id;
             public string key;
             public string username;
             public TcpClient client;
@@ -41,7 +42,7 @@ namespace kurs4sem
             public StringBuilder data;
             public EventWaitHandle handle;
         };
-        private ConcurrentDictionary<long, MyClient> mails = new ConcurrentDictionary<long, MyClient>();
+        private ConcurrentDictionary<int, Mail> mails = new ConcurrentDictionary<int, Mail>();
 
         private MyClient obj;
         private Task send = null;
@@ -53,7 +54,7 @@ namespace kurs4sem
             ConnectToServer();
         }
 
-        private void Log(string msg = "") // вывод писем
+/*        private void Log(string msg = "") // вывод писем
         {
             if (!exit)
             {
@@ -69,7 +70,7 @@ namespace kurs4sem
                     }
                 });
             }
-        }
+        }*/
 
         private string ErrorMsg(string msg)
         {
@@ -92,7 +93,7 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    Log(ErrorMsg(ex.Message));
+                   // Log(ErrorMsg(ex.Message));
                 }
             }
             if (bytes > 0)
@@ -119,7 +120,7 @@ namespace kurs4sem
                 catch (Exception ex)
                 {
                     obj.data.Clear();
-                    Log(ErrorMsg(ex.Message));
+                   // Log(ErrorMsg(ex.Message));
                     obj.handle.Set();
                 }
             }
@@ -141,7 +142,7 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    Log(ErrorMsg(ex.Message));
+                  //  Log(ErrorMsg(ex.Message));
                 }
             }
             if (bytes > 0)
@@ -168,7 +169,7 @@ namespace kurs4sem
                 catch (Exception ex)
                 {
                     obj.data.Clear();
-                    Log(ErrorMsg(ex.Message));
+                  //  Log(ErrorMsg(ex.Message));
                     obj.handle.Set();
                 }
             }
@@ -190,7 +191,7 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    Log(ErrorMsg(ex.Message));
+                   // Log(ErrorMsg(ex.Message));
                 }
             }
         }
@@ -206,7 +207,7 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    Log(ErrorMsg(ex.Message));
+                   // Log(ErrorMsg(ex.Message));
                 }
             }
         }
@@ -246,12 +247,12 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    Log(ErrorMsg(ex.Message));
+                  //  Log(ErrorMsg(ex.Message));
                 }
             }
             if (!connected)
             {
-                Log(SystemMsg("Unauthorized"));
+               // Log(SystemMsg("Unauthorized"));
             }
             return success;
         }
@@ -279,7 +280,7 @@ namespace kurs4sem
                         }
                         catch (Exception ex)
                         {
-                            Log(ErrorMsg(ex.Message));
+                           // Log(ErrorMsg(ex.Message));
                         }
                     }
                     obj.client.Close();
@@ -287,7 +288,7 @@ namespace kurs4sem
             }
             catch (Exception ex)
             {
-                Log(ErrorMsg(ex.Message));
+                //Log(ErrorMsg(ex.Message));
             }
         }
 
@@ -335,11 +336,11 @@ namespace kurs4sem
                     connected = status;
                     if (status)
                     {
-                        Log(SystemMsg("You are now connected"));
+                     //   Log(SystemMsg("You are now connected"));
                     }
                     else
                     {
-                        Log(SystemMsg("You are now disconnected"));
+                       // Log(SystemMsg("You are now disconnected"));
                     }
 
             }
@@ -357,7 +358,7 @@ namespace kurs4sem
                         WhotextBox.Clear();
                         ThemetextBox.Clear();
                         
-                        Log(string.Format("{0} (You): {1}", obj.username, msg));
+                      //  Log(string.Format("{0} (You): {1}", obj.username, msg));
                         if (connected)
                         {
                             Mail mail = new Mail();
@@ -374,20 +375,20 @@ namespace kurs4sem
         ///////// grid 
         ///
 
-        private void AddToGrid(long id, string theme, string from)
+        private void AddToGrid(int id, string theme, string from)
         {
             if (!exit)
             {
                 mailDataGridView.Invoke((MethodInvoker)delegate
                 {
-                    string[] row = new string[] { id.ToString(), theme, from };
+                    string[] row = new string[] { id.ToString(), theme, from + "@bobkin.ru" };
                     mailDataGridView.Rows.Add(row);
                     totalLabel.Text = string.Format("Всего писем: {0}", mailDataGridView.Rows.Count);
                 });
             }
         }
 
-        private void RemoveFromGrid(long id)
+        private void RemoveFromGrid(int id)
         {
 
                 mailDataGridView.Invoke((MethodInvoker)delegate
@@ -406,10 +407,10 @@ namespace kurs4sem
 
         private void ClientsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && e.ColumnIndex == mailDataGridView.Columns["dc"].Index)
+            if (e.RowIndex >= 0 && e.ColumnIndex == mailDataGridView.Columns["disconnect"].Index)
             {
-                long.TryParse(mailDataGridView.Rows[e.RowIndex].Cells["identifier"].Value.ToString(), out long id);
-                mails.TryGetValue(id, out MyClient obj);
+                int.TryParse(mailDataGridView.Rows[e.RowIndex].Cells["identifier"].Value.ToString(), out int id);
+                mails.TryGetValue(id, out Mail obj);
                 RemoveFromGrid(obj.id);
             }
         }

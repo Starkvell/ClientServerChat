@@ -65,12 +65,12 @@ namespace Server
 
         private string ErrorMsg(string msg)
         {
-            return string.Format("ERROR: {0}", msg);
+            return string.Format("Ошибка: {0}", msg);
         }
 
         private string SystemMsg(string msg)
         {
-            return string.Format("SYSTEM: {0}", msg);
+            return string.Format("Система: {0}", msg);
         }
 
         private void Active(bool status)
@@ -82,21 +82,13 @@ namespace Server
                     active = status;
                     if (status)
                     {
-                        addrTextBox.Enabled = false;
-                        portTextBox.Enabled = false;
-                        usernameTextBox.Enabled = false;
-                        keyTextBox.Enabled = false;
-                        startButton.Text = "Stop";
-                        Log(SystemMsg("Server has started"));
+                        startButton.Text = "Остановить";
+                        Log(SystemMsg("Сервер включен"));
                     }
                     else
                     {
-                        addrTextBox.Enabled = true;
-                        portTextBox.Enabled = true;
-                        usernameTextBox.Enabled = true;
-                        keyTextBox.Enabled = true;
-                        startButton.Text = "Start";
-                        Log(SystemMsg("Server has stopped"));
+                        startButton.Text = "Включить";
+                        Log(SystemMsg("Сервер остановлен"));
                     }
                 });
             }
@@ -110,7 +102,7 @@ namespace Server
                 {
                     string[] row = new string[] { id.ToString(), name };
                     clientsDataGridView.Rows.Add(row);
-                    totalLabel.Text = string.Format("Total clients: {0}", clientsDataGridView.Rows.Count);
+                    totalLabel.Text = string.Format("Пользователей в сети: {0}", clientsDataGridView.Rows.Count);
                 });
             }
         }
@@ -129,7 +121,7 @@ namespace Server
                             break;
                         }
                     }
-                    totalLabel.Text = string.Format("Total clients: {0}", clientsDataGridView.Rows.Count);
+                    totalLabel.Text = string.Format("Пользователей в сети: {0}", clientsDataGridView.Rows.Count);
                 });
             }
         }
@@ -172,19 +164,13 @@ namespace Server
                                 JavaScriptSerializer newjson = new JavaScriptSerializer(); // feel free to use JSON serializer
                                 Send(newjson.Serialize(data), obj2.Value);
                                 //Send(sendmsg, obj2.Value);
-                                string logstr = string.Format("{0} sended mail to {1} with theme {2}: {3}", fromwho.username, data.who, data.theme, data.msg);
+                                string logstr = string.Format("Пользователь *{0}* послал письмо пользователю *{1}* на тему *{2}*: *{3}*", fromwho.username, data.who, data.theme, data.msg);
                                 Log(logstr);
                                 fromwho.data.Clear();
                                 fromwho.handle.Set();
                                 break;
                             }
                         }
-
-                        /*string msg = string.Format("{0}: {1}", obj.username, obj.data);
-                        Log(msg);
-                        Send(msg, obj.id);
-                        obj.data.Clear();
-                        obj.handle.Set();*/
                     }
                 }
                 catch (Exception ex)
@@ -278,7 +264,7 @@ namespace Server
             {
                 clients.TryAdd(obj.id, obj);
                 AddToGrid(obj.id, obj.username.ToString());
-                string msg = string.Format("{0} has connected", obj.username);
+                string msg = string.Format("{0} зашел в чат", obj.username);
                 Log(SystemMsg(msg));
                 Send(SystemMsg(msg), obj.id);
                 while (obj.client.Connected)
@@ -296,7 +282,7 @@ namespace Server
                 obj.client.Close();
                 clients.TryRemove(obj.id, out MyClient tmp);
                 RemoveFromGrid(tmp.id);
-                msg = string.Format("{0} has disconnected", tmp.username);
+                msg = string.Format("{0} вышел из чата", tmp.username);
                 Log(SystemMsg(msg));
                 Send(msg, tmp.id);
             }
@@ -352,31 +338,6 @@ namespace Server
                 if (listener != null)
                 {
                     listener.Server.Close();
-                }
-            }
-        }
-
-        private void StartButton_Click(object sender, EventArgs e)
-        {
-            if (active)
-            {
-                active = false;
-            }
-            else if (listener == null || !listener.IsAlive)
-            {
-                string address = "127.0.0.1";
-                int port= 9000;
-                bool error = false;
-                IPAddress ip = null;
-                ip = Dns.Resolve(address).AddressList[0];
-
-                if (!error)
-                {
-                    listener = new Thread(() => Listener(ip, port))
-                    {
-                        IsBackground = true
-                    };
-                    listener.Start();
                 }
             }
         }
@@ -456,22 +417,6 @@ namespace Server
             }
         }
 
-        private void SendTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                if (sendTextBox.Text.Length > 0)
-                {
-                    string msg = sendTextBox.Text;
-                    sendTextBox.Clear();
-                    Log(string.Format("{0} (You): {1}", usernameTextBox.Text.Trim(), msg));
-                    Send(string.Format("{0}: {1}", usernameTextBox.Text.Trim(), msg));
-                }
-            }
-        }
-
         private void Disconnect(long id = -1) // disconnect everyone if ID is not supplied or is lesser than zero
         {
             if (disconnect == null || !disconnect.IsAlive)
@@ -526,15 +471,28 @@ namespace Server
             Log();
         }
 
-        private void CheckBox_CheckedChanged(object sender, EventArgs e)
+        private void StartButton_Click(object sender, EventArgs e)
         {
-            if (keyTextBox.PasswordChar == '*')
+            if (active)
             {
-                keyTextBox.PasswordChar = '\0';
+                active = false;
             }
-            else
+            else if (listener == null || !listener.IsAlive)
             {
-                keyTextBox.PasswordChar = '*';
+                string address = "127.0.0.1";
+                int port = 9000;
+                bool error = false;
+                IPAddress ip = null;
+                ip = Dns.Resolve(address).AddressList[0];
+
+                if (!error)
+                {
+                    listener = new Thread(() => Listener(ip, port))
+                    {
+                        IsBackground = true
+                    };
+                    listener.Start();
+                }
             }
         }
     }
