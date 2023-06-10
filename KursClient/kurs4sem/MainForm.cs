@@ -100,7 +100,13 @@ namespace kurs4sem
                         Mail data = json.Deserialize<Mail>(obj.data.ToString());
 
                         if (data.from == "NULL")
-                            alertlabel.Text = "Ошибка: Пользователя с таким именем в сети не нашлось";
+                        {
+                            alertlabel.Invoke((MethodInvoker)delegate
+                            {
+                                alertlabel.Text = "Ошибка: Пользователя с таким именем в сети не нашлось";
+                            });
+                        }
+
                         else
                             AddToGrid(mailindex++, data.theme, data.from,data.msg);
 
@@ -111,7 +117,6 @@ namespace kurs4sem
                 catch (Exception ex)
                 {
                     obj.data.Clear();
-                   // alertlabel.Text = ErrorMsg(ex.Message);
                     obj.handle.Set();
                 }
             }
