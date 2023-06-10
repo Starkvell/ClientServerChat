@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace kurs4sem
@@ -31,8 +32,7 @@ namespace kurs4sem
             public string who;
             public string theme;
         }
-
-        public struct MyClient
+        public struct CursClient
         {
             public int id;
             public string key;
@@ -43,12 +43,13 @@ namespace kurs4sem
             public StringBuilder data;
             public EventWaitHandle handle;
         };
+
         private ConcurrentDictionary<int, Mail> mails = new ConcurrentDictionary<int, Mail>();
 
-        private MyClient obj;
+        private CursClient obj;
         private Task send = null;
         private bool exit = false;
-        public MainForm(MyClient obj1, IPAddress i, int p, string un)
+        public MainForm(CursClient obj1, IPAddress i, int p, string un)
         {
             InitializeComponent();
             label2.Text = LoginForm.username + "@bobkin.ru";
@@ -66,10 +67,6 @@ namespace kurs4sem
             return string.Format("Ошибка: {0}", msg);
         }
 
-        private string SystemMsg(string msg)
-        {
-            return string.Format("Система: {0}", msg);
-        }
 
         private void Read(IAsyncResult result)
         {
@@ -82,7 +79,10 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                   alertlabel.Text = ErrorMsg(ex.Message);
+                    alertlabel.Invoke((MethodInvoker)delegate
+                    {
+                        alertlabel.Text = ex.Message;
+                    });
                 }
             }
             if (bytes > 0)
@@ -138,7 +138,13 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Text = ErrorMsg(ex.Message);
+                    alertlabel.Invoke((MethodInvoker)delegate
+                    {
+                        alertlabel.Invoke((MethodInvoker)delegate
+                        {
+                            alertlabel.Text = ex.Message;
+                        });
+                    });
                 }
             }
             if (bytes > 0)
@@ -165,7 +171,10 @@ namespace kurs4sem
                 catch (Exception ex)
                 {
                     obj.data.Clear();
-                    alertlabel.Text = ErrorMsg(ex.Message);
+                    alertlabel.Invoke((MethodInvoker)delegate
+                    {
+                        alertlabel.Text = ex.Message;
+                    });
                     obj.handle.Set();
                 }
             }
@@ -187,7 +196,10 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Text = ErrorMsg(ex.Message);
+                    alertlabel.Invoke((MethodInvoker)delegate
+                    {
+                        alertlabel.Text = ex.Message;
+                    });
                 }
             }
         }
@@ -203,7 +215,10 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Text = ErrorMsg(ex.Message);
+                    alertlabel.Invoke((MethodInvoker)delegate
+                    {
+                        alertlabel.Text = ex.Message;
+                    });
                 }
             }
         }
@@ -242,7 +257,10 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Text = ErrorMsg(ex.Message);
+                    alertlabel.Invoke((MethodInvoker)delegate
+                    {
+                        alertlabel.Text = ex.Message;
+                    });
                 }
             }
             if (!connected)
@@ -257,7 +275,7 @@ namespace kurs4sem
         {
             try
             {
-                obj = new MyClient();
+                obj = new CursClient();
                 obj.username = username;
                 obj.client = new TcpClient();
                 obj.client.Connect(ip, port);
@@ -284,7 +302,10 @@ namespace kurs4sem
             }
             catch (Exception ex)
             {
-               alertlabel.Text = ex.Message;
+                alertlabel.Invoke((MethodInvoker)delegate
+                {
+                    alertlabel.Text = ex.Message;
+                });
             }
         }
 
@@ -314,35 +335,36 @@ namespace kurs4sem
         private void SendMailBtn_Click(object sender, EventArgs e)
         {
                     if (WhotextBox.Text.Length > 0)
+            {
+                alertlabel.Text = "";
+                string msg = (MessageTextBox.Text.Length > 0)?MessageTextBox.Text:"Пустое сообщение"; 
+                if (WhotextBox.Text.Contains("/") || WhotextBox.Text.Contains(".") || WhotextBox.Text.Contains(",") || WhotextBox.Text.Contains(";") || WhotextBox.Text.Contains(":") || WhotextBox.Text.Contains("!"))
+                {
+                    alertlabel.Text = "Ошибка 2022: Использованы недопустимые символы!";
+                    return;
+                }
+                string who = WhotextBox.Text;
+                string theme = (ThemetextBox.Text.Length > 0)?ThemetextBox.Text:"Без темы";
+                MessageTextBox.Clear();
+                WhotextBox.Clear();
+                ThemetextBox.Clear();
+                if (connected)
+                {
+                    Mail mail = new Mail();
+                    mail.msg = msg;
+                    mail.who = who;
+                    mail.theme = theme;
+                    JavaScriptSerializer json = new JavaScriptSerializer();
+                    try
                     {
-                        alertlabel.Text = "";
-
-                        string msg = (MessageTextBox.Text.Length > 0)?MessageTextBox.Text:"Пустое сообщение";
-                        string who = WhotextBox.Text;
-                        string theme = (ThemetextBox.Text.Length > 0)?ThemetextBox.Text:"Без темы";
-                        
-                        MessageTextBox.Clear();
-                        WhotextBox.Clear();
-                        ThemetextBox.Clear();
-                        
-                        if (connected)
-                        {
-                            Mail mail = new Mail();
-                            mail.msg = msg;
-                            mail.who = who;
-                            mail.theme = theme;
-                            JavaScriptSerializer json = new JavaScriptSerializer();
-                            try
-                            {
-                                Send(json.Serialize(mail));
-                            }
-                            catch (Exception ex)
-                            {
-                                alertlabel.Text = ErrorMsg(ex.Message);
-                            }
-
-                        }
+                        Send(json.Serialize(mail));
                     }
+                    catch (Exception ex)
+                    {
+                        alertlabel.Text = ErrorMsg(ex.Message);
+                    }
+                }
+            }
                     else alertlabel.Text = "Ошибка: Для отправки письма введите почту получателя";
         }
 

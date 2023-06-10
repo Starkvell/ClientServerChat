@@ -18,7 +18,7 @@ namespace kurs4sem
 {
     public partial class LoginForm : Form
     {
-        private MyClient obj;
+        private CursClient obj;
         static public string username = "";
 
         public LoginForm()
@@ -47,7 +47,7 @@ namespace kurs4sem
                 ip = Dns.Resolve(address).AddressList[0];
                 try
                 {
-                    obj = new MyClient();
+                    obj = new CursClient();
                     obj.username = username;
                     obj.client = new TcpClient();
                     obj.client.Connect(ip, port);

@@ -23,7 +23,7 @@ namespace Server
             public string who;
             public string theme;
         }
-        private struct MyClient
+        private struct CursClient
         {
             public long id;
             public StringBuilder username;
@@ -35,7 +35,7 @@ namespace Server
             public StringBuilder theme;
             public EventWaitHandle handle;
         };
-        private ConcurrentDictionary<long, MyClient> clients = new ConcurrentDictionary<long, MyClient>();
+        private ConcurrentDictionary<long, CursClient> clients = new ConcurrentDictionary<long, CursClient>();
         private Task send = null;
         private Thread disconnect = null;
         private bool exit = false;
@@ -67,7 +67,6 @@ namespace Server
         {
             return string.Format("Ошибка: {0}", msg);
         }
-
         private string SystemMsg(string msg)
         {
             return string.Format("Система: {0}", msg);
@@ -93,7 +92,6 @@ namespace Server
                 });
             }
         }
-
         private void AddToGrid(long id, string name)
         {
             if (!exit)
@@ -106,7 +104,6 @@ namespace Server
                 });
             }
         }
-
         private void RemoveFromGrid(long id)
         {
             if (!exit)
@@ -125,10 +122,9 @@ namespace Server
                 });
             }
         }
-
         private void Read(IAsyncResult result)
         {
-            MyClient fromwho = (MyClient)result.AsyncState;
+            CursClient fromwho = (CursClient)result.AsyncState;
             int bytes = 0;
             if (fromwho.client.Connected)
             {
@@ -156,7 +152,7 @@ namespace Server
                         Mail data = json.Deserialize<Mail>(fromwho.data.ToString());
                         bool key = false;
 
-                        foreach (KeyValuePair<long, MyClient> obj2 in clients)
+                        foreach (KeyValuePair<long, CursClient> obj2 in clients)
                         {
                             if (obj2.Value.username.ToString() == data.who)
                             {
@@ -196,10 +192,9 @@ namespace Server
                 fromwho.handle.Set();
             }
         }
-
         private void ReadAuth(IAsyncResult result)
         {
-            MyClient obj = (MyClient)result.AsyncState;
+            CursClient obj = (CursClient)result.AsyncState;
             int bytes = 0;
             if (obj.client.Connected)
             {
@@ -244,8 +239,7 @@ namespace Server
                 obj.handle.Set();
             }
         }
-
-        private bool Authorize(MyClient obj)
+        private bool Authorize(CursClient obj)
         {
             bool success = false;
             while (obj.client.Connected)
@@ -267,8 +261,7 @@ namespace Server
             }
             return success;
         }
-
-        private void Connection(MyClient obj)
+        private void Connection(CursClient obj)
         {
             if (Authorize(obj))
             {
@@ -289,13 +282,12 @@ namespace Server
                     }
                 }
                 obj.client.Close();
-                clients.TryRemove(obj.id, out MyClient tmp);
+                clients.TryRemove(obj.id, out CursClient tmp);
                 RemoveFromGrid(tmp.id);
                 msg = string.Format("{0} вышел из сети", tmp.username);
                 Log(SystemMsg(msg));
             }
         }
-
         private void Listener(IPAddress ip, int port)
         {
             TcpListener listener = null;
@@ -310,7 +302,7 @@ namespace Server
                     {
                         try
                         {
-                            MyClient obj = new MyClient();
+                            CursClient obj = new CursClient();
                             obj.id = id;
                             obj.username = new StringBuilder();
                             obj.client = listener.AcceptTcpClient();
@@ -349,10 +341,9 @@ namespace Server
                 }
             }
         }
-
         private void Write(IAsyncResult result)
         {
-            MyClient obj = (MyClient)result.AsyncState;
+            CursClient obj = (CursClient)result.AsyncState;
             if (obj.client.Connected)
             {
                 try
@@ -365,8 +356,7 @@ namespace Server
                 }
             }
         }
-
-        private void BeginWrite(string msg, MyClient obj) // отправление письма клиенту
+        private void BeginWrite(string msg, CursClient obj) // отправление письма клиенту
         {
             byte[] buffer = Encoding.UTF8.GetBytes(msg);
             if (obj.client.Connected)
@@ -381,27 +371,7 @@ namespace Server
                 }
             }
         }
-
-       /* private void BeginWrite(string msg, long id = -1) // send the message to everyone except the sender or set ID to lesser than zero to send to everyone
-        {
-            byte[] buffer = Encoding.UTF8.GetBytes(msg);
-            foreach (KeyValuePair<long, MyClient> obj in clients)
-            {
-                if (id != obj.Value.id && obj.Value.client.Connected)
-                {
-                    try
-                    {
-                        obj.Value.stream.BeginWrite(buffer, 0, buffer.Length, new AsyncCallback(Write), obj.Value);
-                    }
-                    catch (Exception ex)
-                    {
-                        Log(ErrorMsg(ex.Message));
-                    }
-                }
-            }
-        }*/
-
-        private void Send(string msg, MyClient obj)
+        private void Send(string msg, CursClient obj)
         {
             if (send == null || send.IsCompleted)
             {
@@ -412,20 +382,7 @@ namespace Server
                 send.ContinueWith(antecendent => BeginWrite(msg, obj));
             }
         }
-
-       /* private void Send(string msg, long id = -1)
-        {
-            if (send == null || send.IsCompleted)
-            {
-                send = Task.Factory.StartNew(() => BeginWrite(msg, id));
-            }
-            else
-            {
-                send.ContinueWith(antecendent => BeginWrite(msg, id));
-            }
-        }*/
-
-        private void Disconnect(long id = -1) // disconnect everyone if ID is not supplied or is lesser than zero
+        private void Disconnect()
         {
             if (disconnect == null || !disconnect.IsAlive)
             {
@@ -433,13 +390,14 @@ namespace Server
                 {
                     if (id >= 0)
                     {
-                        clients.TryGetValue(id, out MyClient obj);
-                        obj.client.Close();
+                        clients.TryGetValue(id, out CursClient obj);
+                        if (obj.client!=null)
+                            obj.client.Close();
                         RemoveFromGrid(obj.id);
                     }
                     else
                     {
-                        foreach (KeyValuePair<long, MyClient> obj in clients)
+                        foreach (KeyValuePair<long, CursClient> obj in clients)
                         {
                             obj.Value.client.Close();
                             RemoveFromGrid(obj.Value.id);
@@ -452,33 +410,16 @@ namespace Server
                 disconnect.Start();
             }
         }
-
-        private void DisconnectButton_Click(object sender, EventArgs e)
-        {
-            Disconnect();
-        }
-
         private void Server_FormClosing(object sender, FormClosingEventArgs e)
         {
             exit = true;
             active = false;
             Disconnect();
         }
-
-        private void ClientsDataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex == clientsDataGridView.Columns["dc"].Index)
-            {
-                long.TryParse(clientsDataGridView.Rows[e.RowIndex].Cells["identifier"].Value.ToString(), out long id);
-                Disconnect(id);
-            }
-        }
-
         private void ClearButton_Click(object sender, EventArgs e)
         {
             Log();
         }
-
         private void StartButton_Click(object sender, EventArgs e)
         {
             if (active)

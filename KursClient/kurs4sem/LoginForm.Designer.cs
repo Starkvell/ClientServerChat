@@ -50,11 +50,11 @@
             this.mainlabel.AutoSize = true;
             this.mainlabel.Font = new System.Drawing.Font("Tempus Sans ITC", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.mainlabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mainlabel.Location = new System.Drawing.Point(64, 56);
+            this.mainlabel.Location = new System.Drawing.Point(54, 61);
             this.mainlabel.Name = "mainlabel";
-            this.mainlabel.Size = new System.Drawing.Size(284, 35);
+            this.mainlabel.Size = new System.Drawing.Size(307, 35);
             this.mainlabel.TabIndex = 1;
-            this.mainlabel.Text = "Введите ваше имя:";
+            this.mainlabel.Text = "Введите вашу почту:";
             // 
             // button1
             // 
