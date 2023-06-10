@@ -175,7 +175,7 @@
             // MessageTextBox
             // 
             this.MessageTextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MessageTextBox.Location = new System.Drawing.Point(559, 152);
+            this.MessageTextBox.Location = new System.Drawing.Point(559, 176);
             this.MessageTextBox.MaxLength = 100;
             this.MessageTextBox.Multiline = true;
             this.MessageTextBox.Name = "MessageTextBox";
@@ -322,7 +322,7 @@
             this.totalLabel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.totalLabel.ForeColor = System.Drawing.Color.Black;
             this.totalLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.totalLabel.Location = new System.Drawing.Point(10, 47);
+            this.totalLabel.Location = new System.Drawing.Point(11, 47);
             this.totalLabel.Margin = new System.Windows.Forms.Padding(8, 4, 4, 4);
             this.totalLabel.Name = "totalLabel";
             this.totalLabel.Size = new System.Drawing.Size(144, 22);
@@ -333,11 +333,12 @@
             // alertlabel
             // 
             this.alertlabel.AutoSize = true;
-            this.alertlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.alertlabel.ForeColor = System.Drawing.Color.Maroon;
-            this.alertlabel.Location = new System.Drawing.Point(647, 525);
+            this.alertlabel.BackColor = System.Drawing.Color.Transparent;
+            this.alertlabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.alertlabel.ForeColor = System.Drawing.Color.Crimson;
+            this.alertlabel.Location = new System.Drawing.Point(568, 381);
             this.alertlabel.Name = "alertlabel";
-            this.alertlabel.Size = new System.Drawing.Size(0, 16);
+            this.alertlabel.Size = new System.Drawing.Size(0, 19);
             this.alertlabel.TabIndex = 45;
             // 
             // MainForm
@@ -347,22 +348,22 @@
             this.BackColor = System.Drawing.Color.SlateGray;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1129, 510);
+            this.ClientSize = new System.Drawing.Size(1130, 513);
             this.Controls.Add(this.alertlabel);
+            this.Controls.Add(this.WhotextBox);
+            this.Controls.Add(this.ThemetextBox);
             this.Controls.Add(this.totalLabel);
             this.Controls.Add(this.mailDataGridView);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.sendmailbtn);
-            this.Controls.Add(this.ThemetextBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.WhotextBox);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.MessageTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.exitbutton);
             this.Controls.Add(this.mainlabel);
+            this.Controls.Add(this.MessageTextBox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;

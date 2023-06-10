@@ -15,7 +15,9 @@ namespace kurs4sem
         public MailDetail(string from, string theme, string msg)
         {
             InitializeComponent();
+
             WhotextBox.Text = from + "@bobkin.ru";
+            Text = "Подробности письма от" + WhotextBox.Text;
             ThemetextBox.Text = theme;
             MSGtextBox.Text = msg;
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.mainlabel = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
@@ -37,30 +38,31 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(60, 139);
+            this.textBox1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(41, 108);
             this.textBox1.MaxLength = 10;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(140, 31);
+            this.textBox1.Size = new System.Drawing.Size(188, 32);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // mainlabel
             // 
             this.mainlabel.AutoSize = true;
-            this.mainlabel.Font = new System.Drawing.Font("Tempus Sans ITC", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mainlabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.mainlabel.Location = new System.Drawing.Point(54, 61);
+            this.mainlabel.BackColor = System.Drawing.Color.Transparent;
+            this.mainlabel.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mainlabel.ForeColor = System.Drawing.Color.Black;
+            this.mainlabel.Location = new System.Drawing.Point(48, 43);
             this.mainlabel.Name = "mainlabel";
-            this.mainlabel.Size = new System.Drawing.Size(307, 35);
+            this.mainlabel.Size = new System.Drawing.Size(269, 31);
             this.mainlabel.TabIndex = 1;
             this.mainlabel.Text = "Введите вашу почту:";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(178, 250);
+            this.button1.Location = new System.Drawing.Point(120, 225);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(128, 35);
             this.button1.TabIndex = 2;
             this.button1.Text = "Ок";
             this.button1.UseVisualStyleBackColor = true;
@@ -69,22 +71,24 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(206, 145);
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(235, 116);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(132, 25);
+            this.label1.Size = new System.Drawing.Size(114, 24);
             this.label1.TabIndex = 3;
             this.label1.Text = "@bobkin.ru";
             // 
             // alertlabel
             // 
             this.alertlabel.AutoSize = true;
-            this.alertlabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.alertlabel.ForeColor = System.Drawing.Color.Maroon;
-            this.alertlabel.Location = new System.Drawing.Point(18, 186);
+            this.alertlabel.BackColor = System.Drawing.Color.Transparent;
+            this.alertlabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.alertlabel.ForeColor = System.Drawing.Color.Crimson;
+            this.alertlabel.Location = new System.Drawing.Point(12, 164);
             this.alertlabel.Name = "alertlabel";
-            this.alertlabel.Size = new System.Drawing.Size(0, 16);
+            this.alertlabel.Size = new System.Drawing.Size(0, 19);
             this.alertlabel.TabIndex = 4;
             // 
             // LoginForm
@@ -92,7 +96,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.SlateGray;
-            this.ClientSize = new System.Drawing.Size(411, 333);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(367, 297);
             this.Controls.Add(this.alertlabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
