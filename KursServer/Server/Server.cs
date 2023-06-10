@@ -45,7 +45,7 @@ namespace Server
             InitializeComponent();
         }
 
-        private void Log(string msg = "") // clear the log if message is not supplied or is empty
+        private void Log(string msg = "")
         {
             if (!exit)
             {
@@ -152,25 +152,35 @@ namespace Server
                     }
                     else
                     {
-                        JavaScriptSerializer json = new JavaScriptSerializer(); // feel free to use JSON serializer
+                        JavaScriptSerializer json = new JavaScriptSerializer();
                         Mail data = json.Deserialize<Mail>(fromwho.data.ToString());
+                        bool key = false;
 
                         foreach (KeyValuePair<long, MyClient> obj2 in clients)
                         {
                             if (obj2.Value.username.ToString() == data.who)
                             {
                                 data.from = fromwho.username.ToString();
-                                //string sendmsg = string.Format("{0} sended mail to you with theme {1}: {2}", fromwho.username, data.theme, data.msg);
-                                JavaScriptSerializer newjson = new JavaScriptSerializer(); // feel free to use JSON serializer
+                                JavaScriptSerializer newjson = new JavaScriptSerializer(); 
                                 Send(newjson.Serialize(data), obj2.Value);
-                                //Send(sendmsg, obj2.Value);
                                 string logstr = string.Format("Пользователь *{0}* послал письмо пользователю *{1}* на тему *{2}*: *{3}*", fromwho.username, data.who, data.theme, data.msg);
                                 Log(logstr);
                                 fromwho.data.Clear();
                                 fromwho.handle.Set();
+                                key = true;
                                 break;
                             }
                         }
+                        if (key == false) {
+                            data.from = "NULL";
+                            JavaScriptSerializer newjson = new JavaScriptSerializer();
+                            Send(newjson.Serialize(data), fromwho);
+                            string logstr = string.Format("Пользователь *{0}* собирался послать письмо пользователю *{1}* на тему *{2}*: *{3}*, но такого пользователя в сети не нашлось", fromwho.username, data.who, data.theme, data.msg);
+                            Log(logstr);
+                            fromwho.data.Clear();
+                            fromwho.handle.Set();
+                        }
+
                     }
                 }
                 catch (Exception ex)
@@ -264,9 +274,8 @@ namespace Server
             {
                 clients.TryAdd(obj.id, obj);
                 AddToGrid(obj.id, obj.username.ToString());
-                string msg = string.Format("{0} зашел в чат", obj.username);
+                string msg = string.Format("{0} зашел в сеть", obj.username);
                 Log(SystemMsg(msg));
-                Send(SystemMsg(msg), obj.id);
                 while (obj.client.Connected)
                 {
                     try
@@ -282,9 +291,8 @@ namespace Server
                 obj.client.Close();
                 clients.TryRemove(obj.id, out MyClient tmp);
                 RemoveFromGrid(tmp.id);
-                msg = string.Format("{0} вышел из чата", tmp.username);
+                msg = string.Format("{0} вышел из сети", tmp.username);
                 Log(SystemMsg(msg));
-                Send(msg, tmp.id);
             }
         }
 
@@ -358,7 +366,7 @@ namespace Server
             }
         }
 
-        private void BeginWrite(string msg, MyClient obj) // send the message to a specific client
+        private void BeginWrite(string msg, MyClient obj) // отправление письма клиенту
         {
             byte[] buffer = Encoding.UTF8.GetBytes(msg);
             if (obj.client.Connected)
@@ -374,7 +382,7 @@ namespace Server
             }
         }
 
-        private void BeginWrite(string msg, long id = -1) // send the message to everyone except the sender or set ID to lesser than zero to send to everyone
+       /* private void BeginWrite(string msg, long id = -1) // send the message to everyone except the sender or set ID to lesser than zero to send to everyone
         {
             byte[] buffer = Encoding.UTF8.GetBytes(msg);
             foreach (KeyValuePair<long, MyClient> obj in clients)
@@ -391,7 +399,7 @@ namespace Server
                     }
                 }
             }
-        }
+        }*/
 
         private void Send(string msg, MyClient obj)
         {
@@ -405,7 +413,7 @@ namespace Server
             }
         }
 
-        private void Send(string msg, long id = -1)
+       /* private void Send(string msg, long id = -1)
         {
             if (send == null || send.IsCompleted)
             {
@@ -415,7 +423,7 @@ namespace Server
             {
                 send.ContinueWith(antecendent => BeginWrite(msg, id));
             }
-        }
+        }*/
 
         private void Disconnect(long id = -1) // disconnect everyone if ID is not supplied or is lesser than zero
         {

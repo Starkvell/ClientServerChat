@@ -13,12 +13,13 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace kurs4sem
 {
     public partial class MainForm : Form
     {
-        private bool connected = false;
+        private bool connected = true;
         private Thread client = null;
         private int mailindex = 0;
 
@@ -31,7 +32,7 @@ namespace kurs4sem
             public string theme;
         }
 
-        private struct MyClient
+        public struct MyClient
         {
             public int id;
             public string key;
@@ -47,22 +48,27 @@ namespace kurs4sem
         private MyClient obj;
         private Task send = null;
         private bool exit = false;
-        public MainForm()
+        public MainForm(MyClient obj1, IPAddress i, int p, string un)
         {
             InitializeComponent();
             label2.Text = LoginForm.username + "@bobkin.ru";
-            ConnectToServer();
+            obj = obj1;
+            client = new Thread(() => Connection(i, p, un))
+            {
+                IsBackground = true
+            };
+            client.Start();
         }
 
 
         private string ErrorMsg(string msg)
         {
-            return string.Format("ERROR: {0}", msg);
+            return string.Format("Ошибка: {0}", msg);
         }
 
         private string SystemMsg(string msg)
         {
-            return string.Format("SYSTEM: {0}", msg);
+            return string.Format("Система: {0}", msg);
         }
 
         private void Read(IAsyncResult result)
@@ -76,7 +82,7 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                   // Log(ErrorMsg(ex.Message));
+                   alertlabel.Text = ErrorMsg(ex.Message);
                 }
             }
             if (bytes > 0)
@@ -89,12 +95,14 @@ namespace kurs4sem
                         obj.stream.BeginRead(obj.buffer, 0, obj.buffer.Length, new AsyncCallback(Read), null);
                     }
                     else
-                    {
-                        // Log(obj.data.ToString());
-
-                        JavaScriptSerializer json = new JavaScriptSerializer(); // feel free to use JSON serializer
+                    { 
+                        JavaScriptSerializer json = new JavaScriptSerializer();
                         Mail data = json.Deserialize<Mail>(obj.data.ToString());
-                        AddToGrid(mailindex++, data.theme, data.from,data.msg);
+
+                        if (data.from == "NULL")
+                            alertlabel.Text = "Ошибка: Пользователя с таким именем в сети не нашлось";
+                        else
+                            AddToGrid(mailindex++, data.theme, data.from,data.msg);
 
                         obj.data.Clear();
                         obj.handle.Set();
@@ -103,7 +111,7 @@ namespace kurs4sem
                 catch (Exception ex)
                 {
                     obj.data.Clear();
-                   // Log(ErrorMsg(ex.Message));
+                   // alertlabel.Text = ErrorMsg(ex.Message);
                     obj.handle.Set();
                 }
             }
@@ -125,7 +133,7 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                  //  Log(ErrorMsg(ex.Message));
+                    alertlabel.Text = ErrorMsg(ex.Message);
                 }
             }
             if (bytes > 0)
@@ -139,7 +147,7 @@ namespace kurs4sem
                     }
                     else
                     {
-                        JavaScriptSerializer json = new JavaScriptSerializer(); // feel free to use JSON serializer
+                        JavaScriptSerializer json = new JavaScriptSerializer();
                         Dictionary<string, string> data = json.Deserialize<Dictionary<string, string>>(obj.data.ToString());
                         if (data.ContainsKey("status") && data["status"].Equals("authorized"))
                         {
@@ -152,7 +160,7 @@ namespace kurs4sem
                 catch (Exception ex)
                 {
                     obj.data.Clear();
-                  //  Log(ErrorMsg(ex.Message));
+                    alertlabel.Text = ErrorMsg(ex.Message);
                     obj.handle.Set();
                 }
             }
@@ -174,7 +182,7 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                   // Log(ErrorMsg(ex.Message));
+                    alertlabel.Text = ErrorMsg(ex.Message);
                 }
             }
         }
@@ -190,7 +198,7 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                   // Log(ErrorMsg(ex.Message));
+                    alertlabel.Text = ErrorMsg(ex.Message);
                 }
             }
         }
@@ -217,7 +225,6 @@ namespace kurs4sem
             Send(json.Serialize(data));
             while (obj.client.Connected)
             {
-                //AddToGrid(obj.id, obj.username.ToString());
                 try
                 {
                     obj.stream.BeginRead(obj.buffer, 0, obj.buffer.Length, new AsyncCallback(ReadAuth), null);
@@ -230,15 +237,16 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                  //  Log(ErrorMsg(ex.Message));
+                    alertlabel.Text = ErrorMsg(ex.Message);
                 }
             }
             if (!connected)
             {
-               // Log(SystemMsg("Unauthorized"));
+                alertlabel.Text = "Не авторизован";
             }
             return success;
         }
+
 
         private void Connection(IPAddress ip, int port, string username)
         {
@@ -263,7 +271,7 @@ namespace kurs4sem
                         }
                         catch (Exception ex)
                         {
-                           // Log(ErrorMsg(ex.Message));
+                            alertlabel.Text = ErrorMsg(ex.Message);
                         }
                     }
                     obj.client.Close();
@@ -271,32 +279,10 @@ namespace kurs4sem
             }
             catch (Exception ex)
             {
-                //Log(ErrorMsg(ex.Message));
+               alertlabel.Text = ex.Message;
             }
         }
 
-        [Obsolete]
-        private void ConnectToServer() // подключение к серверу
-        {
-            if (connected)
-            {
-                obj.client.Close();
-            }
-            else if (client == null || !client.IsAlive)
-            {
-                string address = "127.0.0.1";
-                int port = 9000;
-                string username = LoginForm.username;
-                IPAddress ip = null;
-                ip = Dns.Resolve(address).AddressList[0];
-
-                client = new Thread(() => Connection(ip, port, username))
-                {
-                    IsBackground = true
-                };
-                client.Start();
-            }
-        }
 
 
         private void exitbutton_Click(object sender, EventArgs e)
@@ -322,32 +308,41 @@ namespace kurs4sem
 
         private void SendMailBtn_Click(object sender, EventArgs e)
         {
-                    if (MessageTextBox.Text.Length > 0 && WhotextBox.Text.Length > 0 && ThemetextBox.Text.Length > 0)
+                    if (WhotextBox.Text.Length > 0)
                     {
-                        string msg = MessageTextBox.Text;
+                        alertlabel.Text = "";
+
+                        string msg = (MessageTextBox.Text.Length > 0)?MessageTextBox.Text:"Пустое сообщение";
                         string who = WhotextBox.Text;
-                        string theme = ThemetextBox.Text;
+                        string theme = (ThemetextBox.Text.Length > 0)?ThemetextBox.Text:"Без темы";
                         
                         MessageTextBox.Clear();
                         WhotextBox.Clear();
                         ThemetextBox.Clear();
                         
-                      //  Log(string.Format("{0} (You): {1}", obj.username, msg));
                         if (connected)
                         {
                             Mail mail = new Mail();
                             mail.msg = msg;
                             mail.who = who;
                             mail.theme = theme;
-                            JavaScriptSerializer json = new JavaScriptSerializer(); // feel free to use JSON serializer
-                            Send(json.Serialize(mail));
+                            JavaScriptSerializer json = new JavaScriptSerializer();
+                            try
+                            {
+                                Send(json.Serialize(mail));
+                            }
+                            catch (Exception ex)
+                            {
+                                alertlabel.Text = ErrorMsg(ex.Message);
+                            }
+
                         }
                     }
+                    else alertlabel.Text = "Ошибка: Для отправки письма введите почту получателя";
         }
 
 
-        ///////// grid 
-        ///
+        ///////// Таблица с письмами
 
         private void AddToGrid(int id, string theme, string from, string msg)
         {
