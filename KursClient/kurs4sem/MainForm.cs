@@ -53,6 +53,7 @@ namespace kurs4sem
         {
             InitializeComponent();
             label2.Text = LoginForm.username + "@bobkin.ru";
+            Text+=" пользователя " + label2.Text;
             obj = obj1;
             client = new Thread(() => Connection(i, p, un))
             {

@@ -17,7 +17,7 @@ namespace kurs4sem
             InitializeComponent();
 
             WhotextBox.Text = from + "@bobkin.ru";
-            Text = "Подробности письма от" + WhotextBox.Text;
+            Text = "Подробности письма от пользователя " + WhotextBox.Text;
             ThemetextBox.Text = theme;
             MSGtextBox.Text = msg;
         }
