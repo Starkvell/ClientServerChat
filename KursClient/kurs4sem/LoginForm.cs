@@ -32,11 +32,11 @@ namespace kurs4sem
         {
             if (textBox1.Text == "")
             {
-                alertlabel.Text = "Ошибка 2023: Введите имя пользователя!";
+                alertLabel.Text = "Ошибка 2023: Введите имя пользователя!";
             }
             else if (textBox1.Text.Contains("/") || textBox1.Text.Contains(".") || textBox1.Text.Contains(",") || textBox1.Text.Contains(";") || textBox1.Text.Contains(":") || textBox1.Text.Contains("!"))
             {
-                alertlabel.Text = "Ошибка 2022: Использованы недопустимые символы!";
+                alertLabel.Text = "Ошибка 2022: Использованы недопустимые символы!";
             }
             else
             {
@@ -58,7 +58,7 @@ namespace kurs4sem
                 }
                 catch
                 {
-                    alertlabel.Text = "Ошибка 228: Проблема с соединением к серверу";
+                    alertLabel.Text = "Ошибка 228: Проблема с соединением к серверу";
                     return;
                 }
 

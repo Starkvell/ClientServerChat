@@ -52,8 +52,8 @@ namespace kurs4sem
         public MainForm(CursClient obj1, IPAddress i, int p, string un)
         {
             InitializeComponent();
-            label2.Text = LoginForm.username + "@bobkin.ru";
-            Text+=" пользователя " + label2.Text;
+            connectDynamicLabel.Text = LoginForm.username + "@bobkin.ru";
+            Text+=" пользователя " + connectDynamicLabel.Text;
             obj = obj1;
             client = new Thread(() => Connection(i, p, un))
             {
@@ -80,9 +80,9 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Invoke((MethodInvoker)delegate
+                    alertLabel.Invoke((MethodInvoker)delegate
                     {
-                        alertlabel.Text = ex.Message;
+                        alertLabel.Text = ex.Message;
                     });
                 }
             }
@@ -102,9 +102,9 @@ namespace kurs4sem
 
                         if (data.from == "NULL")
                         {
-                            alertlabel.Invoke((MethodInvoker)delegate
+                            alertLabel.Invoke((MethodInvoker)delegate
                             {
-                                alertlabel.Text = "Ошибка: Пользователя с таким именем в сети не нашлось";
+                                alertLabel.Text = "Ошибка: Пользователя с таким именем в сети не нашлось";
                             });
                         }
 
@@ -139,11 +139,11 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Invoke((MethodInvoker)delegate
+                    alertLabel.Invoke((MethodInvoker)delegate
                     {
-                        alertlabel.Invoke((MethodInvoker)delegate
+                        alertLabel.Invoke((MethodInvoker)delegate
                         {
-                            alertlabel.Text = ex.Message;
+                            alertLabel.Text = ex.Message;
                         });
                     });
                 }
@@ -172,9 +172,9 @@ namespace kurs4sem
                 catch (Exception ex)
                 {
                     obj.data.Clear();
-                    alertlabel.Invoke((MethodInvoker)delegate
+                    alertLabel.Invoke((MethodInvoker)delegate
                     {
-                        alertlabel.Text = ex.Message;
+                        alertLabel.Text = ex.Message;
                     });
                     obj.handle.Set();
                 }
@@ -197,9 +197,9 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Invoke((MethodInvoker)delegate
+                    alertLabel.Invoke((MethodInvoker)delegate
                     {
-                        alertlabel.Text = ex.Message;
+                        alertLabel.Text = ex.Message;
                     });
                 }
             }
@@ -216,9 +216,9 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Invoke((MethodInvoker)delegate
+                    alertLabel.Invoke((MethodInvoker)delegate
                     {
-                        alertlabel.Text = ex.Message;
+                        alertLabel.Text = ex.Message;
                     });
                 }
             }
@@ -258,15 +258,15 @@ namespace kurs4sem
                 }
                 catch (Exception ex)
                 {
-                    alertlabel.Invoke((MethodInvoker)delegate
+                    alertLabel.Invoke((MethodInvoker)delegate
                     {
-                        alertlabel.Text = ex.Message;
+                        alertLabel.Text = ex.Message;
                     });
                 }
             }
             if (!connected)
             {
-                alertlabel.Text = "Не авторизован";
+                alertLabel.Text = "Не авторизован";
             }
             return success;
         }
@@ -295,7 +295,7 @@ namespace kurs4sem
                         }
                         catch (Exception ex)
                         {
-                            alertlabel.Text = ErrorMsg(ex.Message);
+                            alertLabel.Text = ErrorMsg(ex.Message);
                         }
                     }
                     obj.client.Close();
@@ -303,9 +303,9 @@ namespace kurs4sem
             }
             catch (Exception ex)
             {
-                alertlabel.Invoke((MethodInvoker)delegate
+                alertLabel.Invoke((MethodInvoker)delegate
                 {
-                    alertlabel.Text = ex.Message;
+                    alertLabel.Text = ex.Message;
                 });
             }
         }
@@ -337,11 +337,11 @@ namespace kurs4sem
         {
                     if (whoTextBox.Text.Length > 0)
             {
-                alertlabel.Text = "";
+                alertLabel.Text = "";
                 string msg = (messageTextBox.Text.Length > 0)?messageTextBox.Text:"Пустое сообщение"; 
                 if (whoTextBox.Text.Contains("/") || whoTextBox.Text.Contains(".") || whoTextBox.Text.Contains(",") || whoTextBox.Text.Contains(";") || whoTextBox.Text.Contains(":") || whoTextBox.Text.Contains("!"))
                 {
-                    alertlabel.Text = "Ошибка 2022: Использованы недопустимые символы!";
+                    alertLabel.Text = "Ошибка 2022: Использованы недопустимые символы!";
                     return;
                 }
                 string who = whoTextBox.Text;
@@ -362,11 +362,11 @@ namespace kurs4sem
                     }
                     catch (Exception ex)
                     {
-                        alertlabel.Text = ErrorMsg(ex.Message);
+                        alertLabel.Text = ErrorMsg(ex.Message);
                     }
                 }
             }
-                    else alertlabel.Text = "Ошибка: Для отправки письма введите почту получателя";
+                    else alertLabel.Text = "Ошибка: Для отправки письма введите почту получателя";
         }
 
 
@@ -418,7 +418,7 @@ namespace kurs4sem
                 mails.TryGetValue(id, out Mail obj1);
                 RemoveFromGrid(obj1.id);
             }
-            else if (e.RowIndex >= 0 && e.ColumnIndex == mailDataGridView.Columns["ReadButton"].Index)
+            else if (e.RowIndex >= 0 && e.ColumnIndex == mailDataGridView.Columns["readButton"].Index)
                 {
                     int.TryParse(mailDataGridView.Rows[e.RowIndex].Cells["identifier"].Value.ToString(), out int id);
                     mails.TryGetValue(id, out Mail obj1);

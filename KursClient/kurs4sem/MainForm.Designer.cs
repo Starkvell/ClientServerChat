@@ -35,133 +35,133 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.mainlabel = new System.Windows.Forms.Label();
-            this.exitbutton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.sendmailbtn = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.mainLabel = new System.Windows.Forms.Label();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.connectStaticLabel = new System.Windows.Forms.Label();
+            this.connectDynamicLabel = new System.Windows.Forms.Label();
+            this.mailDomain = new System.Windows.Forms.Label();
+            this.sendMailButton = new System.Windows.Forms.Button();
+            this.themeLabel = new System.Windows.Forms.Label();
+            this.whoLabel = new System.Windows.Forms.Label();
+            this.sendMailLabel = new System.Windows.Forms.Label();
             this.mailDataGridView = new System.Windows.Forms.DataGridView();
             this.identifier = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.namefrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ReadButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.readButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.disconnect = new System.Windows.Forms.DataGridViewButtonColumn();
             this.totalLabel = new System.Windows.Forms.Label();
-            this.alertlabel = new System.Windows.Forms.Label();
+            this.alertLabel = new System.Windows.Forms.Label();
             this.themeTextBox = new System.Windows.Forms.TextBox();
             this.whoTextBox = new System.Windows.Forms.TextBox();
             this.messageTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.mailDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
-            // mainlabel
+            // mainLabel
             // 
-            this.mainlabel.AutoSize = true;
-            this.mainlabel.BackColor = System.Drawing.Color.Transparent;
-            this.mainlabel.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.mainlabel.ForeColor = System.Drawing.Color.Black;
-            this.mainlabel.Location = new System.Drawing.Point(7, 9);
-            this.mainlabel.Name = "mainlabel";
-            this.mainlabel.Size = new System.Drawing.Size(293, 42);
-            this.mainlabel.TabIndex = 0;
-            this.mainlabel.Text = "Почтовый ящик";
+            this.mainLabel.AutoSize = true;
+            this.mainLabel.BackColor = System.Drawing.Color.Transparent;
+            this.mainLabel.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.mainLabel.ForeColor = System.Drawing.Color.Black;
+            this.mainLabel.Location = new System.Drawing.Point(7, 9);
+            this.mainLabel.Name = "mainLabel";
+            this.mainLabel.Size = new System.Drawing.Size(293, 42);
+            this.mainLabel.TabIndex = 0;
+            this.mainLabel.Text = "Почтовый ящик";
             // 
-            // exitbutton
+            // exitButton
             // 
-            this.exitbutton.Location = new System.Drawing.Point(856, 442);
-            this.exitbutton.Name = "exitbutton";
-            this.exitbutton.Size = new System.Drawing.Size(166, 41);
-            this.exitbutton.TabIndex = 2;
-            this.exitbutton.Text = "Выход";
-            this.exitbutton.UseVisualStyleBackColor = true;
-            this.exitbutton.Click += new System.EventHandler(this.exitbutton_Click);
+            this.exitButton.Location = new System.Drawing.Point(856, 442);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(166, 41);
+            this.exitButton.TabIndex = 2;
+            this.exitButton.Text = "Выход";
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitbutton_Click);
             // 
-            // label1
+            // connectStaticLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(298, 47);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 22);
-            this.label1.TabIndex = 32;
-            this.label1.Text = "Подключен:";
+            this.connectStaticLabel.AutoSize = true;
+            this.connectStaticLabel.BackColor = System.Drawing.Color.Transparent;
+            this.connectStaticLabel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.connectStaticLabel.ForeColor = System.Drawing.Color.Black;
+            this.connectStaticLabel.Location = new System.Drawing.Point(298, 47);
+            this.connectStaticLabel.Name = "connectStaticLabel";
+            this.connectStaticLabel.Size = new System.Drawing.Size(115, 22);
+            this.connectStaticLabel.TabIndex = 32;
+            this.connectStaticLabel.Text = "Подключен:";
             // 
-            // label2
+            // connectDynamicLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(416, 46);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(129, 22);
-            this.label2.TabIndex = 33;
-            this.label2.Text = "пользователь";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.connectDynamicLabel.AutoSize = true;
+            this.connectDynamicLabel.BackColor = System.Drawing.Color.Transparent;
+            this.connectDynamicLabel.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.connectDynamicLabel.ForeColor = System.Drawing.Color.Black;
+            this.connectDynamicLabel.Location = new System.Drawing.Point(416, 46);
+            this.connectDynamicLabel.Name = "connectDynamicLabel";
+            this.connectDynamicLabel.Size = new System.Drawing.Size(129, 22);
+            this.connectDynamicLabel.TabIndex = 33;
+            this.connectDynamicLabel.Text = "пользователь";
+            this.connectDynamicLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label3
+            // mailDomain
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(782, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(135, 26);
-            this.label3.TabIndex = 41;
-            this.label3.Text = "@bobkin.ru";
+            this.mailDomain.AutoSize = true;
+            this.mailDomain.BackColor = System.Drawing.Color.Transparent;
+            this.mailDomain.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.mailDomain.ForeColor = System.Drawing.Color.Black;
+            this.mailDomain.Location = new System.Drawing.Point(782, 74);
+            this.mailDomain.Name = "mailDomain";
+            this.mailDomain.Size = new System.Drawing.Size(135, 26);
+            this.mailDomain.TabIndex = 41;
+            this.mailDomain.Text = "@bobkin.ru";
             // 
-            // sendmailbtn
+            // sendMailButton
             // 
-            this.sendmailbtn.Location = new System.Drawing.Point(636, 442);
-            this.sendmailbtn.Name = "sendmailbtn";
-            this.sendmailbtn.Size = new System.Drawing.Size(176, 41);
-            this.sendmailbtn.TabIndex = 39;
-            this.sendmailbtn.Text = "Отправить";
-            this.sendmailbtn.UseVisualStyleBackColor = true;
-            this.sendmailbtn.Click += new System.EventHandler(this.SendMailBtn_Click);
+            this.sendMailButton.Location = new System.Drawing.Point(636, 442);
+            this.sendMailButton.Name = "sendMailButton";
+            this.sendMailButton.Size = new System.Drawing.Size(176, 41);
+            this.sendMailButton.TabIndex = 39;
+            this.sendMailButton.Text = "Отправить";
+            this.sendMailButton.UseVisualStyleBackColor = true;
+            this.sendMailButton.Click += new System.EventHandler(this.SendMailBtn_Click);
             // 
-            // label4
+            // themeLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(554, 114);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(158, 26);
-            this.label4.TabIndex = 37;
-            this.label4.Text = "Тема письма:";
+            this.themeLabel.AutoSize = true;
+            this.themeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.themeLabel.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.themeLabel.ForeColor = System.Drawing.Color.Black;
+            this.themeLabel.Location = new System.Drawing.Point(554, 114);
+            this.themeLabel.Name = "themeLabel";
+            this.themeLabel.Size = new System.Drawing.Size(158, 26);
+            this.themeLabel.TabIndex = 37;
+            this.themeLabel.Text = "Тема письма:";
             // 
-            // label5
+            // whoLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(554, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(76, 26);
-            this.label5.TabIndex = 35;
-            this.label5.Text = "Кому:";
+            this.whoLabel.AutoSize = true;
+            this.whoLabel.BackColor = System.Drawing.Color.Transparent;
+            this.whoLabel.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.whoLabel.ForeColor = System.Drawing.Color.Black;
+            this.whoLabel.Location = new System.Drawing.Point(554, 71);
+            this.whoLabel.Name = "whoLabel";
+            this.whoLabel.Size = new System.Drawing.Size(76, 26);
+            this.whoLabel.TabIndex = 35;
+            this.whoLabel.Text = "Кому:";
             // 
-            // label6
+            // sendMailLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(539, 9);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(335, 42);
-            this.label6.TabIndex = 42;
-            this.label6.Text = "Отправить письмо";
+            this.sendMailLabel.AutoSize = true;
+            this.sendMailLabel.BackColor = System.Drawing.Color.Transparent;
+            this.sendMailLabel.Font = new System.Drawing.Font("Times New Roman", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.sendMailLabel.ForeColor = System.Drawing.Color.Black;
+            this.sendMailLabel.Location = new System.Drawing.Point(539, 9);
+            this.sendMailLabel.Name = "sendMailLabel";
+            this.sendMailLabel.Size = new System.Drawing.Size(335, 42);
+            this.sendMailLabel.TabIndex = 42;
+            this.sendMailLabel.Text = "Отправить письмо";
             // 
             // mailDataGridView
             // 
@@ -183,7 +183,7 @@
             this.mailDataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.mailDataGridView.ColumnHeadersHeight = 24;
             this.mailDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.mailDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.identifier, this.name, this.namefrom, this.ReadButton, this.disconnect });
+            this.mailDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] { this.identifier, this.name, this.namefrom, this.readButton, this.disconnect });
             this.mailDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.mailDataGridView.EnableHeadersVisualStyles = false;
             this.mailDataGridView.GridColor = System.Drawing.Color.DarkKhaki;
@@ -252,17 +252,17 @@
             this.namefrom.Name = "namefrom";
             this.namefrom.ReadOnly = true;
             // 
-            // ReadButton
+            // readButton
             // 
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.ReadButton.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ReadButton.HeaderText = "";
-            this.ReadButton.Name = "ReadButton";
-            this.ReadButton.ReadOnly = true;
-            this.ReadButton.Text = "Читать";
-            this.ReadButton.UseColumnTextForButtonValue = true;
-            this.ReadButton.Width = 80;
+            this.readButton.DefaultCellStyle = dataGridViewCellStyle4;
+            this.readButton.HeaderText = "";
+            this.readButton.Name = "readButton";
+            this.readButton.ReadOnly = true;
+            this.readButton.Text = "Читать";
+            this.readButton.UseColumnTextForButtonValue = true;
+            this.readButton.Width = 80;
             // 
             // disconnect
             // 
@@ -294,16 +294,16 @@
             this.totalLabel.Text = "Всего писем: 0";
             this.totalLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // alertlabel
+            // alertLabel
             // 
-            this.alertlabel.AutoSize = true;
-            this.alertlabel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.alertlabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.alertlabel.ForeColor = System.Drawing.Color.Crimson;
-            this.alertlabel.Location = new System.Drawing.Point(590, 381);
-            this.alertlabel.Name = "alertlabel";
-            this.alertlabel.Size = new System.Drawing.Size(0, 19);
-            this.alertlabel.TabIndex = 45;
+            this.alertLabel.AutoSize = true;
+            this.alertLabel.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.alertLabel.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.alertLabel.ForeColor = System.Drawing.Color.Crimson;
+            this.alertLabel.Location = new System.Drawing.Point(590, 381);
+            this.alertLabel.Name = "alertLabel";
+            this.alertLabel.Size = new System.Drawing.Size(0, 19);
+            this.alertLabel.TabIndex = 45;
             // 
             // themeTextBox
             // 
@@ -348,20 +348,20 @@
             this.BackColor = System.Drawing.Color.OldLace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1130, 513);
-            this.Controls.Add(this.alertlabel);
+            this.Controls.Add(this.alertLabel);
             this.Controls.Add(this.whoTextBox);
             this.Controls.Add(this.themeTextBox);
             this.Controls.Add(this.totalLabel);
             this.Controls.Add(this.mailDataGridView);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.sendmailbtn);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.exitbutton);
-            this.Controls.Add(this.mainlabel);
+            this.Controls.Add(this.sendMailLabel);
+            this.Controls.Add(this.mailDomain);
+            this.Controls.Add(this.sendMailButton);
+            this.Controls.Add(this.themeLabel);
+            this.Controls.Add(this.whoLabel);
+            this.Controls.Add(this.connectDynamicLabel);
+            this.Controls.Add(this.connectStaticLabel);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.mainLabel);
             this.Controls.Add(this.messageTextBox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
@@ -378,22 +378,22 @@
 
         #endregion
 
-        private System.Windows.Forms.Label mainlabel;
-        private System.Windows.Forms.Button exitbutton;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button sendmailbtn;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label mainLabel;
+        private System.Windows.Forms.Button exitButton;
+        private System.Windows.Forms.Label connectStaticLabel;
+        private System.Windows.Forms.Label connectDynamicLabel;
+        private System.Windows.Forms.Label mailDomain;
+        private System.Windows.Forms.Button sendMailButton;
+        private System.Windows.Forms.Label themeLabel;
+        private System.Windows.Forms.Label whoLabel;
+        private System.Windows.Forms.Label sendMailLabel;
         private System.Windows.Forms.DataGridView mailDataGridView;
         private System.Windows.Forms.Label totalLabel;
-        private System.Windows.Forms.Label alertlabel;
+        private System.Windows.Forms.Label alertLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn identifier;
         private System.Windows.Forms.DataGridViewTextBoxColumn name;
         private System.Windows.Forms.DataGridViewTextBoxColumn namefrom;
-        private System.Windows.Forms.DataGridViewButtonColumn ReadButton;
+        private System.Windows.Forms.DataGridViewButtonColumn readButton;
         private System.Windows.Forms.DataGridViewButtonColumn disconnect;
         private System.Windows.Forms.TextBox themeTextBox;
         private System.Windows.Forms.TextBox whoTextBox;

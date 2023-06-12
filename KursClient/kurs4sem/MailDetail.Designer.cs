@@ -28,79 +28,79 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.MSGtextBox = new System.Windows.Forms.TextBox();
-            this.ThemetextBox = new System.Windows.Forms.TextBox();
-            this.WhotextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
+            this.messageTextBox = new System.Windows.Forms.TextBox();
+            this.themeTextBox = new System.Windows.Forms.TextBox();
+            this.whoTextBox = new System.Windows.Forms.TextBox();
+            this.whoLabel = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
+            this.themeLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // MSGtextBox
+            // messageTextBox
             // 
-            this.MSGtextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MSGtextBox.Location = new System.Drawing.Point(12, 124);
-            this.MSGtextBox.Multiline = true;
-            this.MSGtextBox.Name = "MSGtextBox";
-            this.MSGtextBox.ReadOnly = true;
-            this.MSGtextBox.Size = new System.Drawing.Size(489, 285);
-            this.MSGtextBox.TabIndex = 0;
+            this.messageTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.messageTextBox.Location = new System.Drawing.Point(12, 124);
+            this.messageTextBox.Multiline = true;
+            this.messageTextBox.Name = "messageTextBox";
+            this.messageTextBox.ReadOnly = true;
+            this.messageTextBox.Size = new System.Drawing.Size(489, 285);
+            this.messageTextBox.TabIndex = 0;
             // 
-            // ThemetextBox
+            // themeTextBox
             // 
-            this.ThemetextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ThemetextBox.Location = new System.Drawing.Point(176, 79);
-            this.ThemetextBox.MaxLength = 20;
-            this.ThemetextBox.Name = "ThemetextBox";
-            this.ThemetextBox.ReadOnly = true;
-            this.ThemetextBox.Size = new System.Drawing.Size(325, 29);
-            this.ThemetextBox.TabIndex = 45;
-            this.ThemetextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.themeTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.themeTextBox.Location = new System.Drawing.Point(176, 79);
+            this.themeTextBox.MaxLength = 20;
+            this.themeTextBox.Name = "themeTextBox";
+            this.themeTextBox.ReadOnly = true;
+            this.themeTextBox.Size = new System.Drawing.Size(325, 29);
+            this.themeTextBox.TabIndex = 45;
+            this.themeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // WhotextBox
+            // whoTextBox
             // 
-            this.WhotextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WhotextBox.Location = new System.Drawing.Point(176, 39);
-            this.WhotextBox.MaxLength = 10;
-            this.WhotextBox.Name = "WhotextBox";
-            this.WhotextBox.ReadOnly = true;
-            this.WhotextBox.Size = new System.Drawing.Size(325, 29);
-            this.WhotextBox.TabIndex = 43;
-            this.WhotextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.whoTextBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.whoTextBox.Location = new System.Drawing.Point(176, 39);
+            this.whoTextBox.MaxLength = 10;
+            this.whoTextBox.Name = "whoTextBox";
+            this.whoTextBox.ReadOnly = true;
+            this.whoTextBox.Size = new System.Drawing.Size(325, 29);
+            this.whoTextBox.TabIndex = 43;
+            this.whoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // label5
+            // whoLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(7, 38);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(163, 26);
-            this.label5.TabIndex = 42;
-            this.label5.Text = "Отправитель:";
+            this.whoLabel.AutoSize = true;
+            this.whoLabel.BackColor = System.Drawing.Color.Transparent;
+            this.whoLabel.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.whoLabel.ForeColor = System.Drawing.Color.Black;
+            this.whoLabel.Location = new System.Drawing.Point(7, 38);
+            this.whoLabel.Name = "whoLabel";
+            this.whoLabel.Size = new System.Drawing.Size(163, 26);
+            this.whoLabel.TabIndex = 42;
+            this.whoLabel.Text = "Отправитель:";
             // 
-            // button1
+            // backButton
             // 
-            this.button1.Location = new System.Drawing.Point(213, 428);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 46;
-            this.button1.Text = "Назад";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.backButton.Location = new System.Drawing.Point(213, 428);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 46;
+            this.backButton.Text = "Назад";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label4
+            // themeLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(7, 78);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(158, 26);
-            this.label4.TabIndex = 44;
-            this.label4.Text = "Тема письма:";
+            this.themeLabel.AutoSize = true;
+            this.themeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.themeLabel.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.themeLabel.ForeColor = System.Drawing.Color.Black;
+            this.themeLabel.Location = new System.Drawing.Point(7, 78);
+            this.themeLabel.Name = "themeLabel";
+            this.themeLabel.Size = new System.Drawing.Size(158, 26);
+            this.themeLabel.TabIndex = 44;
+            this.themeLabel.Text = "Тема письма:";
             // 
             // MailDetail
             // 
@@ -109,12 +109,12 @@
             this.BackColor = System.Drawing.Color.OldLace;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(513, 482);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.ThemetextBox);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.WhotextBox);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.MSGtextBox);
+            this.Controls.Add(this.backButton);
+            this.Controls.Add(this.themeTextBox);
+            this.Controls.Add(this.themeLabel);
+            this.Controls.Add(this.whoTextBox);
+            this.Controls.Add(this.whoLabel);
+            this.Controls.Add(this.messageTextBox);
             this.MaximizeBox = false;
             this.Name = "MailDetail";
             this.ShowIcon = false;
@@ -122,16 +122,15 @@
             this.Text = "Подробности письма от ";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox MSGtextBox;
-        private System.Windows.Forms.TextBox ThemetextBox;
-        private System.Windows.Forms.TextBox WhotextBox;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox messageTextBox;
+        private System.Windows.Forms.TextBox themeTextBox;
+        private System.Windows.Forms.TextBox whoTextBox;
+        private System.Windows.Forms.Label whoLabel;
+        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Label themeLabel;
     }
 }
