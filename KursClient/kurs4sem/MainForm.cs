@@ -335,20 +335,20 @@ namespace kurs4sem
 
         private void SendMailBtn_Click(object sender, EventArgs e)
         {
-                    if (WhotextBox.Text.Length > 0)
+                    if (whoTextBox.Text.Length > 0)
             {
                 alertlabel.Text = "";
-                string msg = (MessageTextBox.Text.Length > 0)?MessageTextBox.Text:"Пустое сообщение"; 
-                if (WhotextBox.Text.Contains("/") || WhotextBox.Text.Contains(".") || WhotextBox.Text.Contains(",") || WhotextBox.Text.Contains(";") || WhotextBox.Text.Contains(":") || WhotextBox.Text.Contains("!"))
+                string msg = (messageTextBox.Text.Length > 0)?messageTextBox.Text:"Пустое сообщение"; 
+                if (whoTextBox.Text.Contains("/") || whoTextBox.Text.Contains(".") || whoTextBox.Text.Contains(",") || whoTextBox.Text.Contains(";") || whoTextBox.Text.Contains(":") || whoTextBox.Text.Contains("!"))
                 {
                     alertlabel.Text = "Ошибка 2022: Использованы недопустимые символы!";
                     return;
                 }
-                string who = WhotextBox.Text;
-                string theme = (ThemetextBox.Text.Length > 0)?ThemetextBox.Text:"Без темы";
-                MessageTextBox.Clear();
-                WhotextBox.Clear();
-                ThemetextBox.Clear();
+                string who = whoTextBox.Text;
+                string theme = (themeTextBox.Text.Length > 0)?themeTextBox.Text:"Без темы";
+                messageTextBox.Clear();
+                whoTextBox.Clear();
+                themeTextBox.Clear();
                 if (connected)
                 {
                     Mail mail = new Mail();

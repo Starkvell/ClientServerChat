@@ -52,9 +52,9 @@
             this.disconnect = new System.Windows.Forms.DataGridViewButtonColumn();
             this.totalLabel = new System.Windows.Forms.Label();
             this.alertlabel = new System.Windows.Forms.Label();
-            this.ThemetextBox = new System.Windows.Forms.TextBox();
-            this.WhotextBox = new System.Windows.Forms.TextBox();
-            this.MessageTextBox = new System.Windows.Forms.TextBox();
+            this.themeTextBox = new System.Windows.Forms.TextBox();
+            this.whoTextBox = new System.Windows.Forms.TextBox();
+            this.messageTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.mailDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -305,38 +305,41 @@
             this.alertlabel.Size = new System.Drawing.Size(0, 19);
             this.alertlabel.TabIndex = 45;
             // 
-            // ThemetextBox
+            // themeTextBox
             // 
-            this.ThemetextBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ThemetextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.ThemetextBox.Location = new System.Drawing.Point(721, 114);
-            this.ThemetextBox.MaxLength = 20;
-            this.ThemetextBox.Name = "ThemetextBox";
-            this.ThemetextBox.Size = new System.Drawing.Size(381, 32);
-            this.ThemetextBox.TabIndex = 38;
-            this.ThemetextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.themeTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.themeTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.themeTextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.themeTextBox.Location = new System.Drawing.Point(721, 114);
+            this.themeTextBox.MaxLength = 20;
+            this.themeTextBox.Name = "themeTextBox";
+            this.themeTextBox.Size = new System.Drawing.Size(381, 32);
+            this.themeTextBox.TabIndex = 38;
+            this.themeTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // WhotextBox
+            // whoTextBox
             // 
-            this.WhotextBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.WhotextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.WhotextBox.Location = new System.Drawing.Point(636, 71);
-            this.WhotextBox.MaxLength = 10;
-            this.WhotextBox.Name = "WhotextBox";
-            this.WhotextBox.Size = new System.Drawing.Size(140, 32);
-            this.WhotextBox.TabIndex = 36;
-            this.WhotextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.whoTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.whoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.whoTextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.whoTextBox.Location = new System.Drawing.Point(636, 71);
+            this.whoTextBox.MaxLength = 10;
+            this.whoTextBox.Name = "whoTextBox";
+            this.whoTextBox.Size = new System.Drawing.Size(140, 32);
+            this.whoTextBox.TabIndex = 36;
+            this.whoTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // MessageTextBox
+            // messageTextBox
             // 
-            this.MessageTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.MessageTextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.MessageTextBox.Location = new System.Drawing.Point(552, 161);
-            this.MessageTextBox.MaxLength = 100;
-            this.MessageTextBox.Multiline = true;
-            this.MessageTextBox.Name = "MessageTextBox";
-            this.MessageTextBox.Size = new System.Drawing.Size(566, 265);
-            this.MessageTextBox.TabIndex = 46;
+            this.messageTextBox.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.messageTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.messageTextBox.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.messageTextBox.Location = new System.Drawing.Point(552, 161);
+            this.messageTextBox.MaxLength = 100;
+            this.messageTextBox.Multiline = true;
+            this.messageTextBox.Name = "messageTextBox";
+            this.messageTextBox.Size = new System.Drawing.Size(566, 265);
+            this.messageTextBox.TabIndex = 46;
             // 
             // MainForm
             // 
@@ -346,8 +349,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1130, 513);
             this.Controls.Add(this.alertlabel);
-            this.Controls.Add(this.WhotextBox);
-            this.Controls.Add(this.ThemetextBox);
+            this.Controls.Add(this.whoTextBox);
+            this.Controls.Add(this.themeTextBox);
             this.Controls.Add(this.totalLabel);
             this.Controls.Add(this.mailDataGridView);
             this.Controls.Add(this.label6);
@@ -359,7 +362,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.exitbutton);
             this.Controls.Add(this.mainlabel);
-            this.Controls.Add(this.MessageTextBox);
+            this.Controls.Add(this.messageTextBox);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
@@ -392,9 +395,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn namefrom;
         private System.Windows.Forms.DataGridViewButtonColumn ReadButton;
         private System.Windows.Forms.DataGridViewButtonColumn disconnect;
-        private System.Windows.Forms.TextBox ThemetextBox;
-        private System.Windows.Forms.TextBox WhotextBox;
-        private System.Windows.Forms.TextBox MessageTextBox;
+        private System.Windows.Forms.TextBox themeTextBox;
+        private System.Windows.Forms.TextBox whoTextBox;
+        private System.Windows.Forms.TextBox messageTextBox;
     }
 }
 
